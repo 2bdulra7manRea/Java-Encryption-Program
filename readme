@@ -1,0 +1,24 @@
+# Encryption Program
+
+this is a Java Desktop program based onSwing GUI widget toolkit for Java to encrypt and decrypt the message using one-time pad (OTP) is an encryption technique that cannot be cracked, but requires the use of a single-use pre-shared key that is not smaller than the message being sent.
+
+## Functionality
+First : the user enters the message through text field label
+second : the program will generate a random key
+Third : the program will convert both the paintext (message) and random key to binary system
+Forth : the program will apply XOR logical operator in binary system to generate Ciphertext
+FIfth : the ciphertext will be displayed in screen
+Sixth : the user should valid by click on verify button
+seventh: decryption will happens and convert to origin message
+eighth: the origin message will be displayed in the screen
+ninth : if the user want to verify again it will not because the key is valid once
+tenth: exit the program through close button in top left of the screen
+
+
+
+
+
+
+
+
+
