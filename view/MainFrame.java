@@ -1,13 +1,14 @@
 package view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import otp.Message;
@@ -31,22 +32,39 @@ public class MainFrame {
     }
 
     public void display() {
-        this.addButton();
+        this.addNewLabel("Provide Message to Encrypt :");
         this.addTextField();
+        this.addButton();
+        this.addNewLabel("Cipther Text :");
         this.createLabel();
+
         this.adjustFrame();
+        this.adjustLayout();
+        this.visible();
     }
 
     private void adjustFrame() {
 
         this.jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.jFrame.setLayout(new FlowLayout());
         this.jFrame.setTitle(this.title);
         this.jFrame.getContentPane().setBackground(Color.GRAY);
         this.jFrame.setSize(this.width, this.height);
         this.jFrame.setResizable(false);
+    }
+
+
+
+    private void visible(){
         this.jFrame.setVisible(true);
     }
+
+    private void adjustLayout(){
+
+        this.jFrame.setLayout(new GridLayout(8,1,10,10));
+    }
+  
+
+
 
     public void addTextField() {
         this.jTextField = new JTextField();
@@ -59,30 +77,41 @@ public class MainFrame {
 
         JButton jButton = new JButton();
         jButton.setText("Encrypting");
-        jButton.setBackground(Color.DARK_GRAY);
-        jButton.setBounds(200, 200, 100, 50);
-
+        jButton.setBackground(Color.LIGHT_GRAY);
+        jButton.setBounds(200, 200, 200, 20);
+        jButton.setFocusable(false);
         jButton.addActionListener((e) -> {
 
             String text = this.jTextField.getText();
+            if(text.length()!=0){
             String cipherText = this.message.encrypt(text);
-            this.voidDisplayLabel(cipherText);
+            String decryptedMessage =this.message.decrypt();
+            this.voidDisplayLabel(cipherText,decryptedMessage);
+            }
         });
 
-        this.jFrame.add(jButton);
+        JPanel jPanel = new JPanel();
+        jPanel.setBackground(Color.GRAY);
+        jPanel.add(jButton);
+
+        this.jFrame.add(jPanel);
     }
 
     public void createLabel() {
         this.jLabel = new JLabel();
-        this.jLabel.setBackground(Color.BLUE);
-        this.jLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        this.jLabel.setText("hello every one");
-        this.jLabel.setHorizontalTextPosition(JLabel.CENTER);
+        this.jLabel.setText("");
+        this.jLabel.setForeground(Color.WHITE);
         this.jFrame.add(this.jLabel);
     }
 
-    public void voidDisplayLabel(String text) {
-        jLabel.setText(text);
+    public void addNewLabel(String text){
+     JLabel jLabel = new JLabel();   
+     jLabel.setText(text);   
+    this.jFrame.add(jLabel);
+    }
+
+    public void voidDisplayLabel(String text , String text2) {
+        jLabel.setText("Encrypted : " + text + " Decrypted :" +  text2);
     }
 
 }
