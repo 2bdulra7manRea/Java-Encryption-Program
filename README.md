@@ -1,3 +1,4 @@
+
 # Encryption Program
 
 This is a desktop program written in Java that allows the user to encrypt and decrypt messages using the one-time pad (OTP) encryption technique. OTP is a secure encryption method that relies on a pre-shared key that is used only once.
